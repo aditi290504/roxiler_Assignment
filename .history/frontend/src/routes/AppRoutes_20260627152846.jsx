@@ -1,0 +1,79 @@
+import { Routes, Route } from "react-router-dom";
+
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+
+import AdminDashboard from "../pages/Admin/Dashboard";
+import UserDashboard from "../pages/User/Dashboard";
+import OwnerDashboard from "../pages/Owner/Dashboard";
+import ProtectedRoute from "../components/ProectedRoute";
+
+import Users from "../pages/Admin/Users";
+import Stores from "../pages/Admin/Stores";
+
+function AppRoutes() {
+
+    return (
+        <Routes>
+
+            <Route path="/" element={<Login />} />
+
+            <Route
+                path="/register"
+                element={<Register />}
+            />
+
+            <Route
+    path="/admin/dashboard"
+    element={
+        <ProtectedRoute role="ADMIN">
+            <AdminDashboard />
+        </ProtectedRoute>
+    }
+/>
+
+            <Route
+    path="/user/dashboard"
+    element={
+        <ProtectedRoute role="USER">
+            <UserDashboard />
+        </ProtectedRoute>
+    }
+/>
+<Route
+                path="/user/dashboard"
+                element={<UserDashboard />}
+            />
+
+            <Route
+    path="/owner/dashboard"
+    element={
+        <ProtectedRoute role="OWNER">
+            <OwnerDashboard />
+        </ProtectedRoute>
+    }
+/>
+
+        </Routes>
+        <Route
+    path="/admin/users"
+    element={
+        <ProtectedRoute role="ADMIN">
+            <Users />
+        </ProtectedRoute>
+    }
+/>
+
+<Route
+    path="/admin/stores"
+    element={
+        <ProtectedRoute role="ADMIN">
+            <Stores />
+        </ProtectedRoute>
+    }
+/>
+    );
+
+}
+
+export default AppRoutes;
